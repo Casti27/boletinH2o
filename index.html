@@ -3,22 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <title>Boletin Informativo</title>
+
 <style>
     body {
         margin: 0;
-        background: black;
+        background: rgb(255, 255, 255);
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        position: relative;
     }
-    img {
+
+    .noticia {
         max-width: 100%;
         max-height: 100%;
     }
+
+    .qr {
+        position: absolute;
+        right: 100px; /* más cerca de la noticia */
+        top: 50%;
+        transform: translateY(-50%);
+        width: 200px;
+        height: auto;
+        border-radius: 15px; /* bordes redondeados */
+    }
 </style>
+
 </head>
 <body>
-    <img src="https://res.cloudinary.com/daib0eknj/image/upload/v1773250520/ChatGPT_Image_11_mar_2026_12_30_07_s1wffk.png" alt="Imagen">
+
+<img class="noticia" src="https://res.cloudinary.com/daib0eknj/image/upload/v1773375202/Black_White_and_Blue_Modern_Praise_and_Worship_Instagram_Post_3_dkxysq.png" alt="Imagen">
+
+<img class="qr" src="https://res.cloudinary.com/daib0eknj/image/upload/v1773374756/encuestaElecciones_i1q8wv.png" alt="QR Encuesta">
+
 </body>
 </html>
