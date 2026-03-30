@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Boletin Informativo</title>
-
 <style>
     body {
         margin: 0;
@@ -12,22 +11,46 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        position: relative;
+        flex-direction: column;
     }
-
     .noticia {
-        max-width: 100%;
-        max-height: 100%;
+        width: 70%;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        display: none; /* Oculto hasta que den clic */
     }
-
+    #btn-reproducir {
+        padding: 20px 40px;
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #2831a7;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-family: sans-serif;
+    }
 </style>
-
 </head>
 <body>
 
-<img class="noticia" src="https://res.cloudinary.com/daib0eknj/image/upload/v1773942114/ChatGPT_Image_19_mar_2026_12_41_46_vkkt1e.png" alt="Imagen">
+    <button id="btn-reproducir">📢 Clic para ver Boletín con Sonido</button>
 
+    <video id="miVideo" class="noticia" 
+        src="https://res.cloudinary.com/daib0eknj/video/upload/v1774882852/Induccion_entrada_H2o_iaaktv.mp4" 
+        loop playsinline>
+    </video>
 
+    <script>
+        const btn = document.getElementById('btn-reproducir');
+        const video = document.getElementById('miVideo');
+
+        btn.addEventListener('click', () => {
+            video.style.display = 'block'; // Mostramos el video
+            btn.style.display = 'none';    // Ocultamos el botón
+            video.muted = false;           // Aseguramos que tenga audio
+            video.play();                  // ¡Arranca con sonido!
+        });
+    </script>
 
 </body>
 </html>
