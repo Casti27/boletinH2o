@@ -1,33 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Boletin Informativo</title>
+    <meta charset="UTF-8">
+    <title>Boletin Informativo</title>
+    <style>
+        body {
+            margin: 0;
+            background: rgb(1, 1, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
 
-<style>
-    body {
-        margin: 0;
-        background: rgb(1, 1, 1);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        position: relative;
-    }
+        /* La noticia ocupa el fondo */
+        .noticia {
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: contain;
+        }
 
-    .noticia {
-        max-width: 100%;
-        max-height: 100%;
-    }
+        /* Contenedor Flotante */
+        .feedback-flotante {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            z-index: 1000;
+        }
 
-</style>
+        /* El cuadro de texto (oculto por defecto) */
+        .cuadro-comentario {
+            display: none;
+            background: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(10px); /* Efecto cristalino */
+            border: 1px solid #444;
+            padding: 15px;
+            border-radius: 12px;
+            width: 250px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.8);
+            margin-bottom: 15px;
+        }
 
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: #000;
+            border: 1px solid #555;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            resize: none;
+            box-sizing: border-box;
+            font-size: 13px;
+        }
+
+        .btn-enviar-mail {
+            width: 100%;
+            margin-top: 10px;
+            background: #0078d4;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Botón Circular Flotante */
+        .btn-abrir {
+            width: 60px;
+            height: 60px;
+            background-color: #0078d4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+        }
+
+        .btn-abrir:hover {
+            transform: scale(1.1);
+        }
+
+    </style>
 </head>
 <body>
 
-<img class="noticia" src="https://res.cloudinary.com/daib0eknj/image/upload/q_auto/f_auto/v1773942114/ChatGPT_Image_19_mar_2026_12_41_46_vkkt1e.png" alt="Imagen">
+    <img class="noticia" src="https://res.cloudinary.com/daib0eknj/image/upload/q_auto/f_auto/v1775508497/9e9d0ac2-b7e9-433c-afac-ed698eb96f72_sgfczk.jpg" alt="Imagen">
 
+    <div class="feedback-flotante">
+        
+        <div id="miCuadro" class="cuadro-comentario">
+            <label style="color: white; font-size: 15px; display: block; margin-bottom: 8px;">Enviar comentarios</label>
+            <textarea id="textoComentario" placeholder="Escribe algo..."></textarea>
+            <button class="btn-enviar-mail" onclick="enviarMail()">Enviar por Outlook</button>
+        </div>
 
+        <div class="btn-abrir" onclick="toggleComentario()" title="Comentar">
+            💬
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar/ocultar el cuadro
+        function toggleComentario() {
+            const cuadro = document.getElementById('miCuadro');
+            if (cuadro.style.display === 'block') {
+                cuadro.style.display = 'none';
+            } else {
+                cuadro.style.display = 'block';
+            }
+        }
+
+        // Función para enviar el mail
+        function enviarMail() {
+            const texto = document.getElementById('textoComentario').value;
+            const miCorreo = "sistemas@h2ocolombia.com"; 
+            
+            if (texto.trim() === "") {
+                alert("Escribe un comentario primero.");
+                return;
+            }
+
+            const mailtoLink = `mailto:${miCorreo}?subject=Comentario Boletin&body=${encodeURIComponent(texto)}`;
+            window.location.href = mailtoLink;
+            
+            // Ocultar de nuevo tras hacer clic
+            toggleComentario();
+            document.getElementById('textoComentario').value = "";
+        }
+    </script>
 
 </body>
-</html>
+</html>     
